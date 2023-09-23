@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breakout</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+    <div id="quadro">
+        <div id="barra"></div>
+        <div id="bola"></div>
+    </div>
+    <script>
+        document.body.addEventListener('keydown', function (event) {
+        const key = event.key;
+        const code = event.keyCode;
+        window.alert(`Key: ${key}, Code ${code}`);
+        });
+    </script>
+</body>
+</html>
