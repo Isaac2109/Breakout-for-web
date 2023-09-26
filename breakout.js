@@ -32,7 +32,7 @@ var UP_LEFT = 2
 var DOWN_LEFT = 3
 var ball_direction = UP_RIGHT
 var margim_top = 400
-var margim_left = 200
+var margim_left = 1200
 
 function clock() {
     if (ball_direction == UP_RIGHT) {
@@ -66,7 +66,19 @@ function clock() {
         ball_direction = DOWN_RIGHT
     }
     if (margim_top < 5 && ball_direction == UP_LEFT) {
-        ball_direction
+        ball_direction = DOWN_LEFT
+    }
+    if (margim_left < 0 && ball_direction == UP_LEFT) {
+        ball_direction = UP_RIGHT
+    }
+    if (margim_left > 0 && ball_direction == DOWN_LEFT) {
+        DOWN_RIGHT
+    }
+    if ((margim_left + 15) > width_board && ball_direction == DOWN_RIGHT) {
+        ball_direction = DOWN_LEFT
+    }
+    if ((margim_left + 15) > width_board && ball_direction == UP_RIGHT) {
+        ball_direction = UP_LEFT
     }
 
 
