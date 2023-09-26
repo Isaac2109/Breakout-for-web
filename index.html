@@ -33,26 +33,6 @@
         <div id="barra"></div>
         <div id="bola"></div>
     </div>
-    <script>
-        var contador_margim_left_barra = 170
-        var code = ''
-        var key = ''
-        var barra = window.document.getElementById('barra')
-        var bola = document.getElementById('bola')
-        var quadro = window.document.getElementById('quadro')
-        document.body.addEventListener('keydown', function (event) {
-        key = event.key;
-        code = event.keyCode;
-        //window.alert(`Key: ${key}, Code ${code}`);
-        if (code == 39 ) {
-            contador_margim_left_barra += 10
-            barra.style.marginLeft = `${contador_margim_left_barra}px`
-        }
-        if (code == 37 && contador_margim_left_barra > quadro.style.width) {
-            contador_margim_left_barra -= 10
-            barra.style.marginLeft = `${contador_margim_left_barra}px`
-        }
-        });
-    </script>
+    <script src="breakout.js"></script>
 </body>
 </html>
