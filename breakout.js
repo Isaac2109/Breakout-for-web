@@ -5,8 +5,15 @@ var ball = document.getElementById('bola')
 var board = window.document.getElementById('quadro')
 var width_board = window.document.getElementById('quadro').clientWidth
 var height_board = window.document.getElementById('quadro').clientHeight
-console.log(height_board)
 window.onload = clock
+
+var rangeintersect = function(min0, max0, min1, max1) {
+    return Math.max(min0, max0) >= Math.min(min1,max1) && Math.min(min0,max0) <= Math.max(min1,max1)
+}
+
+var rectintersect = function (r0, r1) {
+    return rangeintersect(r0.left, r0.right, r1.left, r1.right) && rangeintersect(r0.top, r0.bottom, r1.top, r1.bottom)
+}
 
 // movimento da barra
 
@@ -35,6 +42,9 @@ var margim_top = 400
 var margim_left = 1200
 
 function clock() {
+    var rect_bar = bar.getBoundingClientRect()
+    var rect_ball = ball.getBoundingClientRect()
+
     if (ball_direction == UP_RIGHT) {
         margim_top -= 5
         margim_left += 5
@@ -71,8 +81,8 @@ function clock() {
     if (margim_left < 0 && ball_direction == UP_LEFT) {
         ball_direction = UP_RIGHT
     }
-    if (margim_left > 0 && ball_direction == DOWN_LEFT) {
-        DOWN_RIGHT
+    if (margim_left < 0 && ball_direction == DOWN_LEFT) {
+        ball_direction = DOWN_RIGHT
     }
     if ((margim_left + 15) > width_board && ball_direction == DOWN_RIGHT) {
         ball_direction = DOWN_LEFT
@@ -81,6 +91,15 @@ function clock() {
         ball_direction = UP_LEFT
     }
 
+    // kick da bola na barra
+
+    if (rectintersect(rect_ball, rect_bar) && ball_direction == DOWN_LEFT) {
+        ball_direction = UP_LEFT
+    }
+
+    if (rectintersect(rect_ball, rect_bar) && ball_direction == DOWN_RIGHT) {
+        ball_direction = UP_RIGHT
+    }
 
     temporizador = setTimeout(clock, 30);
 }
