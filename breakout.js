@@ -7,6 +7,8 @@ var width_board = window.document.getElementById('quadro').clientWidth
 var height_board = window.document.getElementById('quadro').clientHeight
 window.onload = clock
 
+var blocks = [[10, 5, 20, 20]]
+
 var rangeintersect = function(min0, max0, min1, max1) {
     return Math.max(min0, max0) >= Math.min(min1,max1) && Math.min(min0,max0) <= Math.max(min1,max1)
 }
@@ -38,56 +40,56 @@ var DOWN_RIGHT = 1
 var UP_LEFT = 2
 var DOWN_LEFT = 3
 var ball_direction = UP_RIGHT
-var margim_top = 400
-var margim_left = 1200
+var margim_top_ball = 400
+var margim_left_ball = 500
 
 function clock() {
     var rect_bar = bar.getBoundingClientRect()
     var rect_ball = ball.getBoundingClientRect()
 
     if (ball_direction == UP_RIGHT) {
-        margim_top -= 5
-        margim_left += 5
-        ball.style.marginTop = `${margim_top}px`
-        ball.style.marginLeft = `${margim_left}px`
+        margim_top_ball -= 5
+        margim_left_ball += 5
+        ball.style.marginTop = `${margim_top_ball}px`
+        ball.style.marginLeft = `${margim_left_ball}px`
     }
     if (ball_direction == DOWN_RIGHT){
-        margim_top += 5
-        margim_left += 5
-        ball.style.marginTop = `${margim_top}px`
-        ball.style.marginLeft = `${margim_left}px`
+        margim_top_ball += 5
+        margim_left_ball += 5
+        ball.style.marginTop = `${margim_top_ball}px`
+        ball.style.marginLeft = `${margim_left_ball}px`
     }
     if (ball_direction == UP_LEFT) {
-        margim_top -= 5
-        margim_left -= 5
-        ball.style.marginTop = `${margim_top}px`
-        ball.style.marginLeft = `${margim_left}px`
+        margim_top_ball -= 5
+        margim_left_ball -= 5
+        ball.style.marginTop = `${margim_top_ball}px`
+        ball.style.marginLeft = `${margim_left_ball}px`
     }
     if (ball_direction == DOWN_LEFT) {
-        margim_top += 5
-        margim_left -= 5
-        ball.style.marginTop = `${margim_top}px`
-        ball.style.marginLeft = `${margim_left}px`
+        margim_top_ball += 5
+        margim_left_ball -= 5
+        ball.style.marginTop = `${margim_top_ball}px`
+        ball.style.marginLeft = `${margim_left_ball}px`
     }
 
     //tabela da bola
 
-    if (margim_top < 5 && ball_direction == UP_RIGHT) {
+    if (margim_top_ball < 5 && ball_direction == UP_RIGHT) {
         ball_direction = DOWN_RIGHT
     }
-    if (margim_top < 5 && ball_direction == UP_LEFT) {
+    if (margim_top_ball < 5 && ball_direction == UP_LEFT) {
         ball_direction = DOWN_LEFT
     }
-    if (margim_left < 0 && ball_direction == UP_LEFT) {
+    if (margim_left_ball < 0 && ball_direction == UP_LEFT) {
         ball_direction = UP_RIGHT
     }
-    if (margim_left < 0 && ball_direction == DOWN_LEFT) {
+    if (margim_left_ball < 0 && ball_direction == DOWN_LEFT) {
         ball_direction = DOWN_RIGHT
     }
-    if ((margim_left + 15) > width_board && ball_direction == DOWN_RIGHT) {
+    if ((margim_left_ball + 15) > width_board && ball_direction == DOWN_RIGHT) {
         ball_direction = DOWN_LEFT
     }
-    if ((margim_left + 15) > width_board && ball_direction == UP_RIGHT) {
+    if ((margim_left_ball + 15) > width_board && ball_direction == UP_RIGHT) {
         ball_direction = UP_LEFT
     }
 
@@ -102,4 +104,22 @@ function clock() {
     }
 
     temporizador = setTimeout(clock, 30);
+}
+
+    //blocos
+
+for (let b of blocks){
+    for (let i in blocks) {
+        var div = document.createElement('div')
+        div.id = `div${i}`
+
+        var block = window.document.getElementById(`div${i}`)
+        block.style.background = yellow
+        block.style.width = `${blocks[b][0]}%`
+        block.style.height = `${blocks[b][1]}%`
+        block.style.marginTop = `${blocks[b][2]}px`
+        block.style.marginLeft = `${blocks[b][3]}px`
+        block.style.position = absolute
+    } 
+    
 }
