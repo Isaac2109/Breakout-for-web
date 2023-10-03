@@ -7,8 +7,6 @@ var width_board = window.document.getElementById('quadro').clientWidth
 var height_board = window.document.getElementById('quadro').clientHeight
 window.onload = clock
 
-var blocks = [[10, 5, 20, 20]]
-
 var rangeintersect = function(min0, max0, min1, max1) {
     return Math.max(min0, max0) >= Math.min(min1,max1) && Math.min(min0,max0) <= Math.max(min1,max1)
 }
@@ -93,6 +91,7 @@ function clock() {
         ball_direction = UP_LEFT
     }
 
+
     // kick da bola na barra
 
     if (rectintersect(rect_ball, rect_bar) && ball_direction == DOWN_LEFT) {
@@ -104,22 +103,14 @@ function clock() {
     }
 
     temporizador = setTimeout(clock, 30);
+    
+    if (margim_top_ball > 600) {
+        window.location.reload(true)
+    }
 }
+
+
+
 
     //blocos
 
-for (let b of blocks){
-    for (let i in blocks) {
-        var div = document.createElement('div')
-        div.id = `div${i}`
-
-        var block = window.document.getElementById(`div${i}`)
-        block.style.background = yellow
-        block.style.width = `${blocks[b][0]}%`
-        block.style.height = `${blocks[b][1]}%`
-        block.style.marginTop = `${blocks[b][2]}px`
-        block.style.marginLeft = `${blocks[b][3]}px`
-        block.style.position = absolute
-    } 
-    
-}
