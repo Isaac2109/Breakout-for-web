@@ -37,7 +37,7 @@ var UP_RIGHT = 0
 var DOWN_RIGHT = 1
 var UP_LEFT = 2
 var DOWN_LEFT = 3
-var ball_direction = UP_RIGHT
+var ball_direction = DOWN_LEFT
 var margim_top_ball = 400
 var margim_left_ball = 500
 
