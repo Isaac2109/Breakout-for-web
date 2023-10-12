@@ -1,17 +1,25 @@
-var margim_left_bar = 170
 var keycode = ''
+var pontuation = 0
 var body = window.document.getElementById('corpo')
 var bar = window.document.getElementById('barra')
 var ball = document.getElementById('bola')
 var board = window.document.getElementById('quadro')
 var width_board = window.document.getElementById('quadro').clientWidth
 var height_board = window.document.getElementById('quadro').clientHeight
+var margim_left_bar = width_board / 2 - 50
+bar.style.marginLeft = `${margim_left_bar}px`
 window.onload = clock
 var blocks = []
 
 for (let i = 1; i < 56; i++) {
     let block = window.document.getElementById(`bloco${i}`)
     blocks.push(block)
+}
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 var rangeintersect = function(min0, max0, min1, max1) {
@@ -41,12 +49,12 @@ document.body.addEventListener('keydown', function (event) {
 
 var temporizador;
 var UP_RIGHT = 0
-var DOWN_RIGHT = 1
-var UP_LEFT = 2
+var UP_LEFT = 1
+var DOWN_RIGHT = 2
 var DOWN_LEFT = 3
-var ball_direction = DOWN_LEFT
-var margim_top_ball = 400
-var margim_left_ball = 500
+var ball_direction = getRandomInt(0, 1)
+var margim_top_ball = 500
+var margim_left_ball = getRandomInt(20, (width_board - 20))
 
 function clock() {
     var rect_bar = bar.getBoundingClientRect()
@@ -58,18 +66,26 @@ function clock() {
         var rect_block = block.getBoundingClientRect()
         if (rectintersect(rect_block, rect_ball) && ball_direction == UP_LEFT) {
             ball_direction = DOWN_LEFT
+            var size_block = block.clientWidth
+            pontuation += size_block
             block.remove()
         }
         else if (rectintersect(rect_block, rect_ball) && ball_direction == UP_RIGHT) {
             ball_direction = DOWN_RIGHT
+            var size_block = block.clientWidth
+            pontuation += size_block
             block.remove()
         }
         else if (rectintersect(rect_block, rect_ball) && ball_direction == DOWN_LEFT) {
             ball_direction = UP_LEFT
+            var size_block = block.clientWidth
+            pontuation += size_block
             block.remove()
         }
         else if (rectintersect(rect_block, rect_ball) && ball_direction == DOWN_RIGHT) {
             ball_direction = UP_RIGHT
+            var size_block = block.clientWidth
+            pontuation += size_block
             block.remove()
         }
     }
@@ -87,7 +103,6 @@ function clock() {
         ball.style.marginLeft = `${margim_left_ball}px`
     }
     if (ball_direction == UP_LEFT) {
-        console.log('foi')
         margim_top_ball -= 5
         margim_left_ball -= 5
         ball.style.marginTop = `${margim_top_ball}px`
