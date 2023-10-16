@@ -1,4 +1,5 @@
 var keycode = ''
+var bpm = 30
 var pontuation = 0
 var body = window.document.getElementById('corpo')
 var bar = window.document.getElementById('barra')
@@ -35,17 +36,29 @@ var rectintersect = function (r0, r1) {
 document.body.addEventListener('keydown', function (event) {
     keycode = event.keyCode
     //window.alert(`Key: ${key}, Code ${code}`);
-    if (keycode == 39 && (margim_left_bar + 105) < width_board) {
-        margim_left_bar += 10
-        bar.style.marginLeft = `${margim_left_bar}px`
-    }
-    if (keycode == 37 && margim_left_bar > 0) {
-        margim_left_bar -= 10
-        bar.style.marginLeft = `${margim_left_bar}px`
+    
+    if (pontuation < 3000){
+        if (keycode == 39 && (margim_left_bar + 105) < width_board) {
+            margim_left_bar += 10
+            bar.style.marginLeft = `${margim_left_bar}px`
+        }
+        if (keycode == 37 && margim_left_bar > 0) {
+            margim_left_bar -= 10
+            bar.style.marginLeft = `${margim_left_bar}px`
+        }
+    } else {
+        if (keycode == 39 && (margim_left_bar + 105) < width_board) {
+            margim_left_bar += 15
+            bar.style.marginLeft = `${margim_left_bar}px`
+        }
+        if (keycode == 37 && margim_left_bar > 0) {
+            margim_left_bar -= 15
+            bar.style.marginLeft = `${margim_left_bar}px`
+        }
     }
 })
 
-//movimento da bola
+
 
 var temporizador;
 var UP_RIGHT = 0
@@ -62,7 +75,7 @@ function clock() {
 
     //colisão da bola com bloco
 
-    for (var block of blocks) {
+    for (let block of blocks) {
         var rect_block = block.getBoundingClientRect()
         if (rectintersect(rect_block, rect_ball) && ball_direction == UP_LEFT) {
             ball_direction = DOWN_LEFT
@@ -88,7 +101,17 @@ function clock() {
             pontuation += size_block
             block.remove()
         }
+        if (pontuation >= 1000) {
+            block.style.background = "rgb(255, 102, 0)"
+            bpm = 20
+        }
+        if (pontuation >= 3000) {
+            block.style.background = "rgb(252, 2, 2)"
+            bpm = 15
+        }
     }
+
+    //movimentos da bola
 
     if (ball_direction == UP_RIGHT) {
         margim_top_ball -= 5
@@ -147,7 +170,7 @@ function clock() {
         ball_direction = UP_RIGHT
     }
 
-    temporizador = setTimeout(clock, 30);
+    temporizador = setTimeout(clock, bpm)
     
     //queda da bola
 
