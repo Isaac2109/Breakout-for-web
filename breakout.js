@@ -101,6 +101,9 @@ function clock() {
             pontuation += size_block
             block.remove()
         }
+
+        // mudar a cor dos blocos e velocidade da bola e da barra
+
         if (pontuation >= 1000) {
             block.style.background = "rgb(255, 102, 0)"
             bpm = 20
@@ -109,7 +112,14 @@ function clock() {
             block.style.background = "rgb(252, 2, 2)"
             bpm = 15
         }
+        if (blocks.length === 0) {
+            ball.style.background = "rgb(252, 2, 2)"
+        }
     }
+    
+    //checar se acabaram os blocos
+
+    
 
     //movimentos da bola
 
