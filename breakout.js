@@ -12,6 +12,7 @@ bar.style.marginLeft = `${margim_left_bar}px`
 window.onload = clock
 var blocks = []
 
+
 for (let i = 1; i < 56; i++) {
     let block = window.document.getElementById(`bloco${i}`)
     blocks.push(block)
@@ -72,34 +73,39 @@ var margim_left_ball = getRandomInt(20, (width_board - 20))
 function clock() {
     var rect_bar = bar.getBoundingClientRect()
     var rect_ball = ball.getBoundingClientRect()
-
+    
     //colisão da bola com bloco
 
     for (let block of blocks) {
         var rect_block = block.getBoundingClientRect()
+        
         if (rectintersect(rect_block, rect_ball) && ball_direction == UP_LEFT) {
             ball_direction = DOWN_LEFT
             var size_block = block.clientWidth
             pontuation += size_block
             block.remove()
+            blocks.splice(blocks.indexOf(block), 1)
         }
         else if (rectintersect(rect_block, rect_ball) && ball_direction == UP_RIGHT) {
             ball_direction = DOWN_RIGHT
             var size_block = block.clientWidth
             pontuation += size_block
             block.remove()
+            blocks.splice(blocks.indexOf(block), 1)
         }
         else if (rectintersect(rect_block, rect_ball) && ball_direction == DOWN_LEFT) {
             ball_direction = UP_LEFT
             var size_block = block.clientWidth
             pontuation += size_block
             block.remove()
+            blocks.splice(blocks.indexOf(block), 1)
         }
         else if (rectintersect(rect_block, rect_ball) && ball_direction == DOWN_RIGHT) {
             ball_direction = UP_RIGHT
             var size_block = block.clientWidth
             pontuation += size_block
             block.remove()
+            blocks.splice(blocks.indexOf(block), 1)
         }
 
         // mudar a cor dos blocos e velocidade da bola e da barra
@@ -112,14 +118,7 @@ function clock() {
             block.style.background = "rgb(252, 2, 2)"
             bpm = 15
         }
-        if (blocks.length === 0) {
-            ball.style.background = "rgb(252, 2, 2)"
-        }
     }
-    
-    //checar se acabaram os blocos
-
-    
 
     //movimentos da bola
 
@@ -188,4 +187,3 @@ function clock() {
         window.location.reload(true)
     }
 }
-
