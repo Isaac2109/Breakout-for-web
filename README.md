@@ -14,6 +14,6 @@
 <img src="https://github.com/Isaac2109/Breakout-for-web/assets/113056042/be6d6818-48fc-4c45-98c1-b5fadfa20da9" width="400px" />
 </div>
 <div align="center">
-<img src="https://github.com/Isaac2109/Projeto-FakePinterest/assets/113056042/6bb78946-1c47-469e-b353-8ca25965fe3f" width="450px" />
+<img src="https://github.com/Isaac2109/Breakout-for-web/assets/113056042/fe760a5e-2ba2-4306-bce2-20226c659ff0" width="450px" />
 </div>
 
