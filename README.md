@@ -10,7 +10,7 @@
 # Screenshots
 
 <div align="left">
-<img src="https://github.com/Isaac2109/Projeto-FakePinterest/assets/113056042/f32f4aad-789a-424b-9194-a9d1c83e0b1f" width="400px" />
+<img src="https://github.com/Isaac2109/Breakout-for-web/assets/113056042/9d4e420b-07e2-4898-a2a1-ed54249a308b" width="400px" />
 <img src="https://github.com/Isaac2109/Projeto-FakePinterest/assets/113056042/4482a141-cf6f-4450-a7b1-962165807bc2" width="400px" />
 </div>
 <div align="center">
